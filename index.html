@@ -1,47 +1,205 @@
 <!DOCTYPE html>
-
 <html lang="id">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil Mahasiswa | Nama Kamu</title>
+  <meta name="description" content="Website profil pribadi mahasiswa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f2447;
+      --blue: #2b5cff;
+      --blue-soft: #e8eeff;
+      --text: #1d2b45;
+      --muted: #5b6b86;
+      --bg: #f5f7fc;
+      --card: #ffffff;
+      --line: #dbe3f3;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --navy: #e8eeff;
+        --blue: #6c8cff;
+        --blue-soft: #1b2a52;
+        --text: #dbe3f5;
+        --muted: #98a6c4;
+        --bg: #0c1426;
+        --card: #131e38;
+        --line: #26345a;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--blue); }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
 
-<meta charset="UTF-8">
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    /* Navigasi */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+    .nav strong { color: var(--navy); font-weight: 800; }
+    .nav ul { display: flex; gap: 20px; list-style: none; }
+    .nav a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; }
+    .nav a:hover { color: var(--blue); }
 
-<title>Profil Mahasiswa</title>
+    /* Hero */
+    .hero { padding: 56px 0 40px; }
+    .hero .wrap { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center; }
+    .foto {
+      width: 220px; height: 220px; border-radius: 28px;
+      object-fit: cover; background: var(--blue-soft);
+      border: 4px solid var(--card);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.15; color: var(--navy); font-weight: 800; }
+    .subjudul { margin-top: 10px; color: var(--muted); font-size: 1.1rem; }
+    .garis { width: 56px; height: 5px; background: var(--blue); border-radius: 3px; margin-top: 18px; }
 
-<style>
+    /* Seksi bergaya kartu dengan garis biru di kiri */
+    section { padding: 20px 0; }
+    .kartu {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--blue);
+      border-radius: 20px;
+      padding: 26px 30px;
+    }
+    .kartu h2 { font-size: 1.15rem; color: var(--navy); font-weight: 800; margin-bottom: 12px; }
 
-body { font-family: Arial; background: #eaf2f8;
+    .identitas { display: grid; grid-template-columns: max-content 1fr; gap: 6px 20px; }
+    .identitas dt { color: var(--muted); font-weight: 500; }
+    .identitas dd { font-weight: 700; color: var(--navy); }
 
-text-align: center; padding: 40px; }
+    .hobi { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+    .hobi li {
+      background: var(--blue-soft); color: var(--blue);
+      padding: 6px 16px; border-radius: 999px; font-weight: 700; font-size: .95rem;
+    }
 
-.card { background: white; max-width: 500px;
+    .kontak { list-style: none; display: grid; gap: 8px; }
+    .kontak li { display: flex; gap: 12px; }
+    .kontak span { min-width: 90px; color: var(--muted); font-weight: 500; }
 
-margin: auto; padding: 30px; border-radius: 15px; }
+    footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 36px 20px 48px; }
 
-h1 { color: #1769aa; }
-
-</style>
-
+    @media (max-width: 640px) {
+      .hero .wrap { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+      .garis { margin-inline: auto; }
+      .nav ul { gap: 12px; }
+      .kartu { padding: 22px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <header class="nav">
+    <div class="wrap">
+      <strong>Profil Saya</strong>
+      <nav aria-label="Navigasi utama">
+        <ul>
+          <li><a href="#identitas">Identitas</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#hobi">Hobi</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<h1>Profil Mahasiswa</h1>
+  <main>
+    <!-- Nama & foto profil -->
+    <div class="hero">
+      <div class="wrap">
+        <!-- GANTI: letakkan file foto di folder yang sama, mis. foto.jpg, lalu ubah src di bawah -->
+        <img class="foto" src="foto.jpg" alt="Foto profil Nama Kamu"
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 220 220%27%3E%3Crect width=%27220%27 height=%27220%27 fill=%27%23e8eeff%27/%3E%3Ccircle cx=%27110%27 cy=%2788%27 r=%2738%27 fill=%27%232b5cff%27/%3E%3Cpath d=%27M36 200c6-44 40-66 74-66s68 22 74 66z%27 fill=%27%232b5cff%27/%3E%3C/svg%3E'">
+        <div>
+          <h1>Nama Lengkap Kamu</h1>
+          <p class="subjudul">Mahasiswa Program Studi Teknik Informatika</p>
+          <div class="garis"></div>
+        </div>
+      </div>
+    </div>
 
-<h2>Nama: Nama Anda</h2>
+    <!-- Nama dan identitas mahasiswa -->
+    <section id="identitas">
+      <div class="wrap">
+        <div class="kartu">
+          <h2>Nama dan identitas mahasiswa</h2>
+          <dl class="identitas">
+            <dt>Nama</dt><dd>Nama Lengkap Kamu</dd>
+            <dt>NIM</dt><dd>1234567890</dd>
+            <dt>Program studi</dt><dd>Teknik Informatika</dd>
+            <dt>Kampus</dt><dd>Nama Universitas Kamu</dd>
+            <dt>Angkatan</dt><dd>2026</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
 
-<p>Program Studi: Manajemen Informasi Komunikasi</p>
+    <!-- Deskripsi singkat -->
+    <section id="tentang">
+      <div class="wrap">
+        <div class="kartu">
+          <h2>Deskripsi singkat</h2>
+          <p>
+            Halo, saya mahasiswa Teknik Informatika yang sedang belajar membangun website dan aplikasi.
+            Saya senang mempelajari hal baru, bekerja dalam tim, dan ingin terus mengembangkan
+            kemampuan di bidang teknologi. Website ini dibuat sebagai tugas praktik dan
+            dipublikasikan melalui GitHub Pages.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<p>Saya sedang belajar Cloud Computing.</p>
+    <!-- Hobi atau minat -->
+    <section id="hobi">
+      <div class="wrap">
+        <div class="kartu">
+          <h2>Hobi atau minat</h2>
+          <ul class="hobi">
+            <li>Membaca</li>
+            <li>Coding</li>
+            <li>Fotografi</li>
+            <li>Musik</li>
+            <li>Traveling</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<p>Email: mahasiswa@email.com</p>
+    <!-- Kontak / media sosial (opsional) -->
+    <section id="kontak">
+      <div class="wrap">
+        <div class="kartu">
+          <h2>Kontak dan media sosial</h2>
+          <ul class="kontak">
+            <li><span>Email</span><a href="mailto:email@contoh.com">email@contoh.com</a></li>
+            <li><span>GitHub</span><a href="https://github.com/username" target="_blank" rel="noopener">github.com/username</a></li>
+            <li><span>Instagram</span><a href="https://instagram.com/username" target="_blank" rel="noopener">@username</a></li>
+            <li><span>LinkedIn</span><a href="https://linkedin.com/in/username" target="_blank" rel="noopener">linkedin.com/in/username</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-</div>
+  <footer>&copy; 2026 Nama Lengkap Kamu. Tugas praktik mahasiswa.</footer>
 
 </body>
-
 </html>
